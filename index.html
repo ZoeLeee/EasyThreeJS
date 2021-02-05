@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="webgl">
+        <canvas
+            id="glcanvas"
+            width="640"
+            height="480"
+        ></canvas>
+    </div>
+    <script type="module">
+        import { PerspectiveCamera } from './src/main/camera.js'
+        import { WebGlRenderer } from './src/main/renderer.js'
+        import { BoxGeometry } from './src/main/boxGeometry.js'
+        import { Mesh } from './src/main/mesh.js'
+        import { Scene } from './src/main/scene.js'
+        import { Material } from './src/main/material.js'
+        import { Matrix4 } from './src/main/Matrix4.js'
+
+        const canvas = document.getElementById("glcanvas")
+        let renderer = new WebGlRenderer({ canvas });
+
+        const fieldOfView = 45 * Math.PI / 180;   // in radians
+        const aspect = canvas.clientWidth / canvas.clientHeight;
+        const zNear = 0.1;
+        const zFar = 100.0;
+
+        let camera = new PerspectiveCamera(45,aspect,zNear,zFar);
+
+        let geometry=new BoxGeometry(1,1,1);
+
+        let box=new Mesh(geometry,new Material());
+        box.applyMatrix4(new Matrix4().makeTranslation(0,0,-8));
+
+        let scene=new Scene();
+        scene.add(box);
+
+        renderer.render(scene,camera);
+
+    </script>
+</body>
+
+</html>

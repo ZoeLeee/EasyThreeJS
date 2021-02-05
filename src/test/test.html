@@ -18,7 +18,7 @@
             height="480"
         ></canvas>
     </div>
-    <script src="./lib/gl-matrix.js"></script>
+    <script src="../lib/gl-matrix.js"></script>
     <script src="./index.js"></script>
     <script>
 
@@ -330,7 +330,7 @@
                 modelViewMatrix,
                 squareRotation,
                 [1.0, 1.0, 1.0]);
-
+console.log(modelViewMatrix);
             gl.useProgram(programInfo.program);
 
             // Tell WebGL how to pull out the positions from the position
